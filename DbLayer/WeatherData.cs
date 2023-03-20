@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
-namespace WeatherApiService.Models
+namespace DbLayer.Models
 {
     public class WeatherData
     {
+
         [JsonProperty("name")]
         public string Title { get; set; }
 
@@ -35,6 +37,7 @@ namespace WeatherApiService.Models
         public Sys Sys { get; set; }
 
         [JsonProperty("id")]
+        [Key]
         public long Id { get; set; }
 
         [JsonProperty("cod")]
@@ -44,12 +47,18 @@ namespace WeatherApiService.Models
 
     public class Clouds
     {
+        [JsonProperty("id")]
+        [Key]
+        public long Id { get; set; }
         [JsonProperty("all")]
         public long All { get; set; }
     }
 
     public class Coord
     {
+        [JsonProperty("id")]
+        [Key]
+        public long Id { get; set; }
         [JsonProperty("lon")]
         public double Lon { get; set; }
 
@@ -59,6 +68,9 @@ namespace WeatherApiService.Models
 
     public class Main
     {
+        [JsonProperty("id")]
+        [Key]
+        public long Id { get; set; }
         [JsonProperty("temp")]
         public double Temperature { get; set; }
 
@@ -84,6 +96,7 @@ namespace WeatherApiService.Models
         public long Type { get; set; }
 
         [JsonProperty("id")]
+        [Key]
         public long Id { get; set; }
 
         [JsonProperty("message")]
@@ -116,6 +129,9 @@ namespace WeatherApiService.Models
 
     public class Wind
     {
+        [Key]
+        [JsonProperty("id")]
+        public long Id { get; set; }
         [JsonProperty("speed")]
         public double Speed { get; set; }
 

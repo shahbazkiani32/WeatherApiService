@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<div id="container"></div>
+<script>
+    Highcharts.chart('container', {
+        chart: {
+            marginBottom: 70,
+            events: {
+                load: function () {
+                    const chart = this,
+                        lowestTemp = chart.yAxis[0].dataMin,
+                        highestTemp = chart.yAxis[0].dataMax
+
+                    chart.minValue = chart.renderer.text(`Lowest temperature: ${lowestTemp}`)
+                        .attr({
+                            x: 10,
+                            y: chart.chartHeight - 25
+                        })
+                        .css({
+                            fontSize: '14px',
+                            color: 'blue'
+                        }).add().toFront()
+                    chart.maxValue = chart.renderer.text(`Highest temperature: ${highestTemp}`)
+                        .attr({
+                            x: 10,
+                            y: chart.chartHeight - 5
+                        })
+                        .css({
+                            fontSize: '14px',
+                            color: 'red'
+                        }).add().toFront()
+                }
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        series: [{
+            dataLabels: {
+                enabled: true
+            },
+            data: [5, 4, 7, 2, 3, 9]
+        }]
+    });
+
+</script>

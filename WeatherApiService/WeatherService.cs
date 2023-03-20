@@ -1,6 +1,6 @@
 ﻿
 using Newtonsoft.Json;
-using WeatherApiService.Models;
+using DbLayer.Models;
 
 namespace WeatherApiService;
 

@@ -1,4 +1,4 @@
-using WeatherApiService.Models;
+using DbLayer.Models;
 
 namespace WeatherApiService
 {
