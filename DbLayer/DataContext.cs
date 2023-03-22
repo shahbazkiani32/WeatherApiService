@@ -6,19 +6,19 @@ namespace DbLayer
 {
     public class DataContext : DbContext
     {
-        protected readonly IConfiguration Configuration;
+        //protected readonly IConfiguration Configuration;
 
-        public DataContext(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        //public DataContext(IConfiguration configuration)
+        //{
+        //    Configuration = configuration;
+        //}
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             // connect to sql server with connection string from app settings
-            options.UseSqlServer(Configuration.GetConnectionString("WebApiDatabase"));
+            options.UseSqlServer("Server=SHAHBAZ-LTP\\MSSQLSERVER01;Database=WeatherDb;User Id=weather;Password=@Shahbaz2023#;Encrypt=False;");
         }
-
+        //public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         public DbSet<WeatherData> WeatherData { get; set; }
         public DbSet<Clouds> Clouds { get; set; }
         public DbSet<Coord> Coord { get; set; }

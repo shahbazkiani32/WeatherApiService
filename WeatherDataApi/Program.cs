@@ -1,22 +1,11 @@
-using DbLayer;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-
-
-
+// Database Context
+//builder.Services.AddDbContext<DataContext>(opts => opts.UseSqlServer("Server=SHAHBAZ-LTP\\MSSQLSERVER01;Database=WeatherDb;User Id=weather;Password=@Shahbaz2023#;"));
 
 var app = builder.Build();
-
-// Database Context
-builder.Services.AddDbContext<DataContext>(options =>
-    options.UseSqlServer("Data Source=(local);Initial Catalog=weatherdb;Integrated Security=true"));
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

@@ -13,7 +13,7 @@ namespace DbLayer.Models
         public Coord Coord { get; set; }
 
         [JsonProperty("weather")]
-        public Weather[] Weather { get; set; }
+        public List<Weather> Weather { get; set; }
 
         [JsonProperty("base")]
         public string Base { get; set; }

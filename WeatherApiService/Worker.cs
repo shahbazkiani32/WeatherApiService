@@ -1,3 +1,4 @@
+using DbLayer;
 using DbLayer.Models;
 
 namespace WeatherApiService
@@ -5,6 +6,7 @@ namespace WeatherApiService
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
+        private readonly DBLayerClass _dbLayer;
         public WeatherService _rs { get; set; }
         string[] cities =
         {
@@ -20,10 +22,11 @@ namespace WeatherApiService
             "Auckland", "Christchurch", "Waitakere", "Northcote", "Hamilton",//Newzeland
         };
 
-        public Worker(ILogger<Worker> logger)
+        public Worker(ILogger<Worker> logger,DBLayerClass dBLayerClass)
         {
             _logger = logger;
             _rs = new WeatherService(_logger);
+            _dbLayer = dBLayerClass;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -34,7 +37,7 @@ namespace WeatherApiService
                 {
                     string prova = "https://api.openweathermap.org/data/2.5/weather?q=+"+ city + "&units=metric&appid=54880c125693096ed43dc2fd0f5ceba4";
                     WeatherData results = _rs.GetWeatherData(prova).Result;
-
+                    await _dbLayer.WeaterhDataInsert(results);
                     _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
                 }
                 await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
